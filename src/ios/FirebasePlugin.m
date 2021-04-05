@@ -85,9 +85,11 @@ static NSDictionary* googlePlist;
 }
 
 // @override abstract
-- (void)handleOpenURL:(NSNotification*)notification{
-    NSURL* url = [notification object];
-    [[GIDSignIn sharedInstance] handleURL:url sourceApplication:nil annotation:nil];
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+  return [[GIDSignIn sharedInstance] handleURL:url];
 }
 
 - (void)setAutoInitEnabled:(CDVInvokedUrlCommand *)command {
